@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<!-- <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
@@ -16,5 +16,53 @@
   <li>
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
-</ul>
-
+</ul> -->
+<mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill out your license plate</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="License Plate" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" class="flexbox-parent">
+    <mat-grid-list cols="3" rowHeight="3:1">
+      <mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile>
+        <form [formGroup]="secondFormGroup" layout="row" layout-align="center center">
+          <ng-template matStepLabel>When do you want to predict "pico y placa"?</ng-template>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="secondCtrl" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile>
+    </mat-grid-list>
+  </mat-step>
+  <mat-step>
+    <mat-grid-list cols="3" rowHeight="3:1">
+      <mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile>
+        <form>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </form>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-step>
+</mat-horizontal-stepper>
