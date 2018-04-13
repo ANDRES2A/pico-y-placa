@@ -40,6 +40,7 @@ import {
 
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { PicoYPlacaService } from './pico-y-placa.service';
 
 
 @NgModule({
@@ -92,7 +93,7 @@ export class DemoMaterialModule {}
     MatNativeDateModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [PicoYPlacaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

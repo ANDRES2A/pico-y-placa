@@ -22,7 +22,7 @@
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Fill out your license plate</ng-template>
       <mat-form-field>
-        <input matInput placeholder="License Plate" formControlName="firstCtrl" required>
+        <input matInput placeholder="License Plate" formControlName="firstCtrl" [(ngModel)]="licensePlate" required>
       </mat-form-field>
       <div>
         <button mat-button matStepperNext>Next</button>
@@ -36,13 +36,13 @@
         <form [formGroup]="secondFormGroup" layout="row" layout-align="center center">
           <ng-template matStepLabel>When do you want to predict "pico y placa"?</ng-template>
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="secondCtrl" required>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="secondCtrl" [(ngModel)]="dateToDrive" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <div>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
+            <button mat-button matStepperNext (click)='predictPicoYPlaca()'>Next</button>
           </div>
         </form>
       </mat-grid-tile>
@@ -56,7 +56,7 @@
       <mat-grid-tile>
         <form>
         <ng-template matStepLabel>Done</ng-template>
-        You are now done
+        {{picoYPlacaResponse}}
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
