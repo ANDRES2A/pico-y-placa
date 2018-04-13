@@ -10,7 +10,7 @@ export class PicoYPlacaService {
   ableToDrive(licensePlate: string, dateToDrive: string, timeToDrive: string) {
     if(licensePlate && dateToDrive && timeToDrive)
     {
-      let patt = /^[A-Z]{3}-[0-9]{4}$/;
+      let patt = /^[a-zA-z]{3}-[0-9]{4}$/;
       if(patt.test(licensePlate)) {
         timeToDrive = timeToDrive.split(':').join('');
           if(parseInt(timeToDrive)>= 700 && parseInt(timeToDrive)<= 930 || parseInt(timeToDrive)>= 1600 && parseInt(timeToDrive)<= 1930) {
@@ -24,9 +24,9 @@ export class PicoYPlacaService {
       } else
       return 'License Plate Error';
     } else {
-      return 'Error';
+      return 'Not null inputs';
     }
-    return 'Free to ride!!';
+    return 'Free to drive!!';
   }
 
 }

@@ -22,7 +22,7 @@
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Fill out your license plate</ng-template>
       <mat-form-field>
-        <input matInput placeholder="License Plate" formControlName="firstCtrl" [(ngModel)]="licensePlate" required>
+        <input matInput placeholder="License Plate (XXX-1234)" formControlName="firstCtrl" [(ngModel)]="licensePlate" required>
       </mat-form-field>
       <div>
         <button mat-button matStepperNext>Next</button>
@@ -36,9 +36,13 @@
         <form [formGroup]="secondFormGroup" layout="row" layout-align="center center">
           <ng-template matStepLabel>When do you want to predict "pico y placa"?</ng-template>
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="secondCtrl" [(ngModel)]="dateToDrive" required>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="secondCtrl" [(ngModel)]="dateToDrive"
+              required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Chose a time" type="time" formControlName="secondCtrl" [(ngModel)]="timeToDrive" required>
           </mat-form-field>
           <div>
             <button mat-button matStepperPrevious>Back</button>
@@ -55,13 +59,13 @@
       <mat-grid-tile></mat-grid-tile>
       <mat-grid-tile>
         <form>
-        <ng-template matStepLabel>Done</ng-template>
-        {{picoYPlacaResponse}}
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
-        </div>
-      </form>
+          <ng-template matStepLabel>Done</ng-template>
+          {{picoYPlacaResponse}}
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </form>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-step>

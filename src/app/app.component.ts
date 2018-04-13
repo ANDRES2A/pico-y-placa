@@ -22,13 +22,13 @@ export class AppComponent {
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrl: ['', Validators.pattern(/^[a-zA-z]{3}-[0-9]{4}$/)]
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
   }
   predictPicoYPlaca() {
-    this.picoYPlacaResponse = this.picoYPlacaService.ableToDrive(this.licensePlate, this.dateToDrive, '7:30');
+    this.picoYPlacaResponse = this.picoYPlacaService.ableToDrive(this.licensePlate, this.dateToDrive, this.timeToDrive);
   }
 }
